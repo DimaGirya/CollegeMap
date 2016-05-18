@@ -3,8 +3,11 @@ var express = require('express');
 var app = express();
 const Graph = require('node-dijkstra');
 
-var route = getGraph();
 
+
+var data = require('./data.json');
+
+var route = getGraph();
 app.get('/',function(req,res) { //todo get all map
     var status = 200;
     var route = getGraph();
@@ -17,12 +20,15 @@ app.get('/setStatusRoom/:room/:status',function(req,res) { //todo set status in 
     res.status(status).send(route);
 });
 app.get('/getPath/:from/:to',function(req,res) { //todo validation
-
     var from = req.params.from;
     var to = req.params.to;
+    console.log("from:"+from);
+    console.log("to:"+to);
     var status = 200;
     var route = getGraph();
     var message = route.path(from,to,{cost:true});
+    console.log(message);
+    console.log(route);
     res.status(status).send(message);
 });
 //console.log(route.path('1', '4',{cost:true}));
@@ -32,12 +38,21 @@ app.listen(process.env.PORT || 3000, function(){
 });
 
 function getGraph() {   //todo get json from mongoDb  and transform to GRAPH API
-    var route = new Graph();
-
-    route.addNode('1', { 3:10, 2:1 });
-    route.addNode('2', { 1:1, 3:2, 4: 4 });
-    route.addNode('3', { 2:2, 4:1 });
-    route.addNode('4', { 3:1, 2:4 });
-
-    return route;
+    var graph = new Graph();
+    var sizeArray = data.places.length;
+    for(var i = 0 ; i < sizeArray;i++){
+        var sizeNeighbors =  data.places[i].neighbors.length;
+        var neighbors = data.places[i].neighbors;
+        var array = [];
+        var cost = 0;
+        var neighbor = null;
+        var temp = {};
+        for(var j = 0 ; j < sizeNeighbors;j++){
+            neighbor = parseInt(neighbors[j].Id);
+            cost  = parseInt(neighbors[j].weight);
+            temp[neighbor]= cost;
+        }
+        graph.addNode(data.places[i].Id.toString(),temp);
+    }
+    return graph;
 }
