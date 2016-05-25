@@ -4,6 +4,7 @@ var app = express();
 const Graph = require('node-dijkstra');
 
 
+//var Studnets  = mongoose.model('Studnets',gradesSchema);
 
 var data = require('./data.json');
 
