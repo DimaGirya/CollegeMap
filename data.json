@@ -3,6 +3,7 @@
     "Id": 1,
     "Name":"247",
     "type":"class",
+    "isEmpty":true,
     "neighbors": [{
       "Id": 4,
       "weight":1
@@ -12,6 +13,7 @@
     "Id": 2,
     "Name":"246",
     "type":"class",
+      "isEmpty":true,
     "neighbors": [{
     "Id": 4,
     "weight":1
@@ -21,6 +23,7 @@
       "Id": 3,
       "Name":"248",
       "type":"class",
+      "isEmpty":true,
       "neighbors": [{
         "Id": 4,
         "weight":1
