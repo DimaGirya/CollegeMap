@@ -15,7 +15,13 @@ console.log("We are connected!");
 });
 
 
-app.get('/',function(req,res) { //todo get all map
+app.get('/',function(req,res) { //todo get all ma
+    //console.log("")
+    res.sendFile(__dirname +'/public/index.html')
+});
+
+
+app.get('/getAllMap',function(req,res) { //todo get all map
     var status = 200;
     if(!flagIsConnection){
         res.status(status).send({"MESSAGE":"No connection to data base.Try again leter"});
@@ -41,7 +47,7 @@ app.get('/getPath/:from/:to',function(req,res) { //todo validation
         }
         console.log("size data:"+data.length);
         var temp  = JSON.stringify(data);
-        var places = JSON.parse(temp);  // need to change
+        var places = JSON.parse(temp);  // todo need to change
 
         var route = getGraph(places);
         var message = route.path(from,to,{cost:true});
@@ -59,7 +65,7 @@ app.get('/setStatusRoom/:room/:status',function(req,res) { //todo set status in 
 
 //console.log(route.path('1', '4',{cost:true}));
 
-app.listen(process.env.PORT || 3000, function(){
+app.use('/',express.static('/public')).listen(process.env.PORT || 3000, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
