@@ -1,0 +1,74 @@
+//{
+//  "rows":
+//  ["row": {
+//    "box": {
+//      "color": "red",
+//      "border": "1101",
+//      "id": "place_id"
+//    }
+//  },
+//  "row": {
+//    "box": {
+//      "color": "red",
+//      "border": "1101",
+//      "id": "place_id"
+//    }
+//  }]
+//}
+//
+//
+
+
+{
+  "columns": [
+      {
+        "boxes": [{
+          "color": "red",
+          "border": "1101",
+          "place_id": 10,
+          "in_path": true
+        }, {
+          "color": "red",
+          "border": "1101",
+          "place_id": 5,
+          "in_path": true
+        },
+         {
+          "color": "red",
+          "border": "1101",
+          "place_id": 5,
+           "in_path": true
+        }]
+      },      {
+      "boxes": [{
+        "color": "red",
+        "border": "1101",
+        "place_id": 6
+      }, {
+        "color": "red",
+        "border": "1101",
+        "place_id": 6
+      },
+        {
+          "color": "red",
+          "border": "1101",
+          "place_id": 6
+        }]
+    }, {
+      "boxes": [{
+        "color": "red",
+        "border": "1101",
+        "place_id": 10
+      }, {
+        "color": "red",
+        "border": "1101",
+        "place_id": 10
+      },
+        {
+          "color": "red",
+          "border": "1101",
+          "place_id": 10
+        }]
+    }
+    ]
+}

@@ -20,7 +20,7 @@ app.get('/',function(req,res) { //todo get all ma
     res.sendFile(__dirname +'/public/index.html')
 });
 
-
+// get all places
 app.get('/getAllMap',function(req,res) { //todo get all map
     var status = 200;
     if(!flagIsConnection){
@@ -34,6 +34,7 @@ app.get('/getAllMap',function(req,res) { //todo get all map
     });
 });
 
+// get id's of places of the shortest path and cost
 app.get('/getPath/:from/:to',function(req,res) { //todo validation
     var from = req.params.from;
     var to = req.params.to;
@@ -61,6 +62,18 @@ app.get('/setStatusRoom/:room/:status',function(req,res) { //todo set status in 
     var route = getGraph();
     res.status(status).send(route);
 });
+
+
+app.get('/getRoomStatus/:room/',function(req,res) { //todo make query by param :room
+    placesSchema.find({},function (err,data) {
+        if(err){
+            throw err;
+        }
+        var room_status;
+        res.status(200).send(room_status)
+    });
+});
+
 
 
 //console.log(route.path('1', '4',{cost:true}));
