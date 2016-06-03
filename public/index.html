@@ -4,22 +4,351 @@
     <meta charset="UTF-8">
     <title>College map</title>
 </head>
-<body ng-controller="mapController">
-<div ng-repeat="data in dataArray">
-    {{dataArray}}
+<style>
+    .box{
+        float:right;
+        height:50px;
+        width: 50px;
+    }
+    .clear{
+        clear: both;
+    }
+    .room{
+        background-color: #869ec5;
+    }
+    .hallway{
+        background-color: #8294a5;
+    }
+    .borderNone{
+        border:none;
+    }
+    .borderTop{
+        border-top:solid;
+    }
+    .borderLeft{
+        border-left: solid;
+    }
+    .borderRight{
+        border-right: solid;
+    }
+    .borderBottom{
+        border-bottom: solid;
+    }
+    .borderLeftTop{
+        border-left: solid;
+        border-top:solid;
+    }
+    .borderLeftBottom{
+        border-left: solid;
+        border-bottom: solid;
+    }
+    .borderLeftRight{
+        border-left: solid;
+        border-right:solid;
+    }
+    .borderTopRight{
+        border-top:solid;
+        border-right:solid;
+    }
+    .borderTopLeft{
+        border-top:solid;
+        border-left:solid;
+    }
+    .borderTopBottom{
+        border-top:solid;
+        border-bottom: solid;
+    }
+    .borderRightBottom{
+        border-right: solid;
+        border-bottom: solid;
+    }
+    .borderLeftTopRight{
+        border-left: solid;
+        border-top:solid;
+        border-right:solid;
+    }
+    .borderLeftTopBottom{
+        border-left: solid;
+        border-top:solid;
+        border-bottom:solid;
+    }
+    .borderLeftRightBottom{
+        border-left: solid;
+        border-right:solid;
+        border-bottom:solid;
+    }
+    .borderTopRightBottom{
+        border-top:solid;
+        border-right:solid;
+        border-bottom: solid;
+    }
+    .borderRightBottomLeft{
+        border-right: solid;
+        border-bottom: solid;
+        border-left:solid;
+    }
+    .borderBottomLeftRight{
+        border-bottom: solid;
+        border-left:solid;
+        border-right: solid;
+    }
+    .borderLeftTopRightBottom{
+        border:solid;
+    }
+</style>
+<body>
+<div ng-controller="mapController" >
+<div ng-repeat="column in mapData.columns" >
+    <div ng-repeat="box in column.boxes | orderBy:'box.box_id':true">
+            <div ng-class="['box', box.border, box.boxesType]">
+                {{box.box_id}}
+            </div>
+        </div>
+        <div class = "clear">
+        </div>
 </div>
-
+</div>
 
 <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 
 <script>
     var app = angular.module("map",[]);
     app.controller("mapController",function ($scope,$http) {
-      //  $scope.dataArray = ["test","test2","test3","test4"];
-        console.log(" http call");
+        /*
         $http.get("http://localhost:3000/getAllMap").success(function (data) {
             console.log(data);
         });
+        */
+
+
+        //tempory json of data for example. It's must be output from server function. Todo!
+        $scope.mapData =  {
+            "columns": [
+            {
+                "boxes": [
+                    {
+                        "boxesType": "room",
+                        "border": "borderLeftTop",
+                        "place_id": 1,
+                        "box_id": 0,
+                        "in_path": false
+
+                    },
+                    {
+                        "boxesType": "room",
+                        "border": "borderTop",
+                        "place_id": 1,
+                        "box_id": 1,
+                        "in_path": false
+                    },
+                    {
+                        "boxesType": "hallway",
+                        "border": "borderNone",
+                        "place_id": 2,
+                        "box_id": 2,
+                        "in_path": false
+                    },
+                    {
+                        "boxesType": "room",
+                        "border": "borderTopRightBottom",
+                        "place_id": 1,
+                        "box_id": 3,
+                        "in_path": false
+                    }
+                ]
+            },
+            {
+                "boxes": [
+                    {
+                        "boxesType": "room",
+                        "border": "borderLeftBottom",
+                        "place_id": 1,
+                        "box_id": 4,
+                        "in_path": false
+                    },
+                    {
+                        "boxesType": "room",
+                        "border": "borderRightBottom",
+                        "place_id": 1,
+                        "box_id": 5,
+                        "in_path": false
+                    },
+                    {
+                        "boxesType": "hallway",
+                        "border": "none",
+                        "place_id": 2,
+                        "box_id": 6,
+                        "in_path": false
+                    },
+                    {
+                        "boxesType": "room",
+                        "border": "borderRightBottom",
+                        "place_id": 3,
+                        "box_id": 7,
+                        "in_path": false
+                    }
+                ]
+            },{
+                    "boxes": [
+                        {
+                            "boxesType": "room",
+                            "border": "borderLeftTop",
+                            "place_id": 22,
+                            "box_id": 8,
+                            "in_path": false
+                        },
+                        {
+                            "boxesType": "room",
+                            "border": "borderTop",
+                            "place_id": 2,
+                            "box_id": 9,
+                            "in_path": false
+                        },
+                        {
+                            "boxesType": "hallway",
+                            "border": "none",
+                            "place_id": 2,
+                            "box_id": 10,
+                            "in_path": false
+                        },
+                        {
+                            "boxesType": "room",
+                            "border": "borderTopRightBottom",
+                            "place_id": 3,
+                            "box_id": 11,
+                            "in_path": false
+                        }
+                    ]
+                }, {
+                    "boxes": [
+                        {
+                            "boxesType": "room",
+                            "border": "borderLeft",
+                            "place_id": 22,
+                            "box_id": 12,
+                            "in_path": false
+                        },
+                        {
+                            "boxesType": "room",
+                            "border": "borderRight",
+                            "place_id": 2,
+                            "box_id": 13,
+                            "in_path": false
+                        },
+                        {
+                            "boxesType": "hallway",
+                            "border": "none",
+                            "place_id": 2,
+                            "box_id": 14,
+                            "in_path": false
+                        },
+                        {
+                            "boxesType": "room",
+                            "border": "borderTopRightBottom",
+                            "place_id": 3,
+                            "box_id": 15,
+                            "in_path": false
+                        }
+                    ]
+                },
+                {
+                    "boxes": [
+                        {
+                            "boxesType": "room",
+                            "border": "borderLeftBottom",
+                            "place_id": 2,
+                            "box_id": 16,
+                            "in_path": false
+                        },
+                        {
+                            "boxesType": "room",
+                            "border": "borderRightBottom",
+                            "place_id": 2,
+                            "box_id": 17,
+                            "in_path": false
+                        },
+                        {
+                            "boxesType": "hallway",
+                            "border": "none",
+                            "place_id": 2,
+                            "box_id": 18,
+                            "in_path": false
+                        },
+                        {
+                            "boxesType": "room",
+                            "border": "borderTopRightBottom",
+                            "place_id": 3,
+                            "box_id": 19,
+                            "in_path": false
+                        }
+                    ]
+                },
+                {
+                    "boxes": [
+                        {
+                            "boxesType": "room",
+                            "border": "borderLeftTopBottom",
+                            "place_id": 2,
+                            "box_id": 20,
+                            "in_path": false
+                        },
+                        {
+                            "boxesType": "room",
+                            "border": "borderTopBottom",
+                            "place_id": 2,
+                            "box_id": 21,
+                            "in_path": false
+                        },
+                        {
+                            "boxesType": "hallway",
+                            "border": "none",
+                            "place_id": 2,
+                            "box_id": 22,
+                            "in_path": false
+                        },
+                        {
+                            "boxesType": "hallway",
+                            "border": "none",
+                            "place_id": 3,
+                            "box_id": 23,
+                            "in_path": false
+                        }
+                    ]
+                },
+                {
+                    "boxes": [
+                        {
+                            "boxesType": "room",
+                            "border": "borderLeftTopBottom",
+                            "place_id": 1,
+                            "box_id": 24,
+                            "in_path": false
+                        },
+                        {
+                            "boxesType": "room",
+                            "border": "borderBottom",
+                            "place_id": 2,
+                            "box_id": 25,
+                            "in_path": false
+                        },
+                        {
+                            "boxesType": "room",
+                            "border": "borderBottom",
+                            "place_id": 2,
+                            "box_id": 26,
+                            "in_path": false
+                        },
+                        {
+                            "boxesType": "room",
+                            "border": "borderLeftRightBottom",
+                            "place_id": 3,
+                            "box_id": 27,
+                            "in_path": false
+                        }
+                    ]
+                }
+        ]
+        }
     });
 </script>
 <!--
