@@ -34,6 +34,35 @@ app.get('/getAllMap',function(req,res) { //todo get all map
     });
 });
 
+
+
+app.get('/getMapToDisplay',function(req,res) { //todo get all map
+
+    var class1 = {id: 1, type: "classroom", name: "classroom1", coord_x: 0, coord_y: 0, width: 5, height: 10};
+    var class2 = {id: 2, type: "classroom", name: "classroom2", coord_x: 5, coord_y: 0, width: 5, height: 7};
+    var hallway1 = {id: 3, type: "hallway", name: "hallway1", coord_x: 5, coord_y: 7, width: 5, height: 3};
+    var map = [ [],[],[],[],[], [], [], [], [], [] ];
+    var places = [class1, class2, hallway1];
+        for(var i=0;i<places.length;i++){
+            var place = places[i];
+            var coord_y = place.coord_y;
+            var height = place.height;
+            var coord_x = place.coord_x;
+            var width = place.width;
+            for (var j=coord_y;j<coord_y+height;j++){
+                for (var k=coord_x;k<coord_x+width;k++){
+                    map[j][k] = place.id;
+                }
+            }
+            console.log(map);
+            console.log("\n\n");
+        }
+});
+
+
+
+
+
 // get id's of places of the shortest path and cost
 app.get('/getPath/:from/:to',function(req,res) { //todo validation
     var from = req.params.from;
