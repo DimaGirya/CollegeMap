@@ -1,8 +1,155 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: content-box;
+}
+.box{
+  float:right;
+  height:52px;
+  width: 52px;
+
 }
 
-a {
-  color: #00B7FF;
+.box_inner{
+  height:50px;
+  width: 50px;
+}
+
+.clear{
+  clear: both;
+}
+.room{
+  border-width: 2px ;
+  background-color: #869ec5;
+  border-color: #869ec5;
+  border-style: solid;
+}
+.hallway{
+  border-width: 2px;
+  background-color: #8294a5;
+  border-color: #8294a5;
+  border-style: solid;
+}
+.borderNone{
+  border-style: solid;
+}
+.borderTop{
+  border-top-style:solid ;
+  border-top-color: #000000;
+}
+.borderLeft{
+  border-left-style: solid;
+  border-left-color: #000000;
+}
+.borderRight{
+  border-right-style: solid;
+  border-right-color: #000000;
+}
+.borderBottom{
+  border-bottom-style: solid;
+  border-bottom-color: #000000;
+}
+.borderLeftTop{
+  border-left-style: solid;
+  border-top-style:solid;
+  border-top-color: #000000;
+  border-left-color: #000000;
+}
+.borderLeftBottom{
+  border-left-style: solid;
+  border-bottom-style: solid;
+  border-left-color: #000000;
+  border-bottom-color: #000000;
+}
+.borderLeftRight{
+  border-left-style: solid;
+  border-right-style:solid;
+  border-left-color: #000000;
+  border-right-color: #000000;
+}
+.borderTopRight{
+  border-top-style:solid;
+  border-right-style:solid;
+  border-top-color: #000000;
+  border-right-color: #000000;
+
+}
+.borderTopLeft{
+  border-top-style:solid;
+  border-left-style:solid;
+  border-left-color: #000000;
+  border-top-color: #000000;
+}
+.borderTopBottom{
+  border-top-style:solid;
+  border-bottom-style: solid;
+  border-top-color: #000000;
+  border-bottom-color: #000000;
+}
+.borderRightBottom{
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-right-color: #000000;
+  border-bottom-color: #000000;
+}
+.borderLeftTopRight{
+  border-left-style: solid;
+  border-top-style:solid;
+  border-right-style:solid;
+  border-left-color: #000000;
+  border-top-color: #000000;
+  border-right-color: #000000;
+}
+.borderLeftTopBottom{
+  border-left-style: solid;
+  border-top-style:solid;
+  border-bottom-style:solid;
+  border-left-color: #000000;
+  border-top-color: #000000;
+  border-bottom-color: #000000;
+}
+.borderLeftRightBottom{
+  border-left-style: solid;
+  border-right-style:solid;
+  border-bottom-style:solid;
+  border-left-color: #000000;
+  border-bottom-color: #000000;
+  border-right-color: #000000;
+}
+.borderTopRightBottom{
+  border-top-style:solid;
+  border-right-style:solid;
+  border-bottom-style: solid;
+  border-bottom-color: #000000;
+  border-top-color: #000000;
+  border-right-color: #000000;
+}
+.borderRightBottomLeft{
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style:solid;
+  border-left-color: #000000;
+  border-bottom-color: #000000;
+  border-right-color: #000000;
+}
+.borderBottomLeftRight{
+  border-bottom-style: solid;
+  border-left-style:solid;
+  border-right-style: solid;
+  border-left-color: #000000;
+  border-bottom-color: #000000;
+  border-right-color: #000000;
+}
+.borderLeftTopRightBottom{
+  border-color: #000000;
+  border-style:solid;
+
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td,tr {
+  border-width: 0;
 }

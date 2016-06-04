@@ -3,159 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>College map</title>
+    <script src ="https://code.jquery.com/jquery-2.x-git.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<style>
-
-    .box{
-        float:right;
-        height:52px;
-        width: 52px;
-
-    }
-
-    .box_inner{
-        height:50px;
-        width: 50px;
-    }
-
-    .clear{
-        clear: both;
-    }
-    .room{
-        border-width: 2px ;
-        background-color: #869ec5;
-        border-color: #869ec5;
-        border-style: solid;
-    }
-    .hallway{
-        border-width: 2px;
-        background-color: #8294a5;
-        border-color: #8294a5;
-    }
-    .borderNone{
-        border-style: solid;
-    }
-    .borderTop{
-        border-top-style:solid ;
-        border-top-color: #000000;
-    }
-    .borderLeft{
-        border-left-style: solid;
-        border-left-color: #000000;
-    }
-    .borderRight{
-        border-right-style: solid;
-        border-right-color: #000000;
-    }
-    .borderBottom{
-        border-bottom-style: solid;
-        border-bottom-color: #000000;
-    }
-    .borderLeftTop{
-        border-left-style: solid;
-        border-top-style:solid;
-        border-top-color: #000000;
-        border-left-color: #000000;
-    }
-    .borderLeftBottom{
-        border-left-style: solid;
-        border-bottom-style: solid;
-        border-left-color: #000000;
-        border-bottom-color: #000000;
-    }
-    .borderLeftRight{
-        border-left-style: solid;
-        border-right-style:solid;
-        border-left-color: #000000;
-        border-right-color: #000000;
-    }
-    .borderTopRight{
-        border-top-style:solid;
-        border-right-style:solid;
-        border-top-color: #000000;
-        border-right-color: #000000;
-
-    }
-    .borderTopLeft{
-        border-top-style:solid;
-        border-left-style:solid;
-        border-left-color: #000000;
-        border-top-color: #000000;
-    }
-    .borderTopBottom{
-        border-top-style:solid;
-        border-bottom-style: solid;
-        border-top-color: #000000;
-        border-bottom-color: #000000;
-    }
-    .borderRightBottom{
-        border-right-style: solid;
-        border-bottom-style: solid;
-        border-right-color: #000000;
-        border-bottom-color: #000000;
-    }
-    .borderLeftTopRight{
-        border-left-style: solid;
-        border-top-style:solid;
-        border-right-style:solid;
-        border-left-color: #000000;
-        border-top-color: #000000;
-        border-right-color: #000000;
-    }
-    .borderLeftTopBottom{
-        border-left-style: solid;
-        border-top-style:solid;
-        border-bottom-style:solid;
-        border-left-color: #000000;
-        border-top-color: #000000;
-        border-bottom-color: #000000;
-    }
-    .borderLeftRightBottom{
-        border-left-style: solid;
-        border-right-style:solid;
-        border-bottom-style:solid;
-        border-left-color: #000000;
-        border-bottom-color: #000000;
-        border-right-color: #000000;
-    }
-    .borderTopRightBottom{
-        border-top-style:solid;
-        border-right-style:solid;
-        border-bottom-style: solid;
-        border-bottom-color: #000000;
-        border-top-color: #000000;
-        border-right-color: #000000;
-    }
-    .borderRightBottomLeft{
-        border-right-style: solid;
-        border-bottom-style: solid;
-        border-left-style:solid;
-        border-left-color: #000000;
-        border-bottom-color: #000000;
-        border-right-color: #000000;
-    }
-    .borderBottomLeftRight{
-        border-bottom-style: solid;
-        border-left-style:solid;
-        border-right-style: solid;
-        border-left-color: #000000;
-        border-bottom-color: #000000;
-        border-right-color: #000000;
-    }
-    .borderLeftTopRightBottom{
-        border-color: #000000;
-        border-style:solid;
-
-    }
-
-    table {
-        border-collapse: collapse;
-    }
-
-    td,tr {
-       border-width: 0;
-    }
-</style>
 <!--
 <body>
 <div ng-controller="mapController" >
@@ -172,6 +30,43 @@
 </div>
 </div>
 -->
+<nav class = "navbar navbar-default" role = "navigation">
+
+    <div class = "navbar-header">
+        <button type = "button" class = "navbar-toggle"
+                data-toggle = "collapse" data-target = "#example-navbar-collapse">
+            <span class = "sr-only">Toggle navigation</span>
+            <span class = "icon-bar"></span>
+            <span class = "icon-bar"></span>
+            <span class = "icon-bar"></span>
+        </button>
+
+        <a class = "navbar-brand" href = "#">College Map</a>
+    </div>
+
+    <div class = "collapse navbar-collapse" id = "example-navbar-collapse">
+
+        <ul class = "nav navbar-nav">
+            <li class = "dropdown active">
+                <a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">
+                    Find path
+                    <b class = "caret"></b>
+                </a>
+                <ul class = "dropdown-menu">
+                    <input type="text" class="form-control" placeholder="From">
+                    <input type="text" class="form-control" placeholder="To">
+                    <button type="button" class="btn btn-default">Go!</button>
+                </ul>
+            </li>
+            <li><button type="button" class="btn btn-default">Report room status</button></li>
+            <li><button type="button" class="btn btn-default">Update Map</button></li>
+
+
+
+        </ul>
+    </div>
+
+</nav>
 <body>
 <div ng-controller="mapController" >
     <table>
@@ -186,7 +81,7 @@
     </tr>
     </table>
 </div>
-
+<!--
 <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 
 <script>
@@ -429,9 +324,8 @@
         }
     });
 </script>
-<!--
+-->
     <script src = "js/lib/angular/angular.min.js" ></script>
     <script src = "js/map.js"></script>
--->
 </body>
 </html>

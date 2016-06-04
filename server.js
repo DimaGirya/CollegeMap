@@ -1,8 +1,10 @@
-
 var express = require('express');
 var app = express();
-const Graph = require('node-dijkstra');
+var port = process.env.PORT || 3000;
+var mapAction = require('./mapActionsController');
 
+
+/*
 var mongoose = require('mongoose');
 var db = mongoose.connect("mongodb://db_user:db_pass@ds023520.mlab.com:23520/places");
 
@@ -14,12 +16,31 @@ db.connection.once("open",function() {
 console.log("We are connected!");
 });
 
-
-app.get('/',function(req,res) { //todo get all ma
+*/
+/*
+app.get('/',function(req,res) { 
     //console.log("")
     res.sendFile(__dirname +'/public/index.html')
 });
+*/
+app.set('port',port);
+app.use('/',express.static('./public'));
+app.use(function (req,res,next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+app.get('/getMap',mapAction.getMap);
+app.get('/getMapToDisplay',mapAction.getMapToDisplay);
+app.get('/getPath',mapAction.getPath);
+app.get('/setStatusRoom',mapAction.setStatusRoom);
+app.get('/getRoomStatus',mapAction.getRoomStatus);
 
+app.listen(port, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
+
+/*
 // get all places
 app.get('/getAllMap',function(req,res) { //todo get all map
     var status = 200;
@@ -134,3 +155,4 @@ function getGraph(places) {
     console.log(graph);
     return graph;
 }
+    */

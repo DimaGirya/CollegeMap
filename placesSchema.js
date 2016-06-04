@@ -10,5 +10,5 @@ var places = new Schema({
         }]
 },{collection:'places'});
 
-var places = mongoose.model('places', places);
-module.exports  = places;
+var placesSchema = mongoose.model('places', places);
+module.exports  = placesSchema;
