@@ -5,14 +5,14 @@
 }
 .box{
   float:right;
-  height:52px;
-  width: 52px;
+  height:152px;
+  width: 152px;
 
 }
 
 .box_inner{
-  height:50px;
-  width: 50px;
+  height:150px;
+  width: 150px;
 }
 
 .clear{
@@ -152,4 +152,33 @@ table {
 
 td,tr {
   border-width: 0;
+}
+
+.inputFindPatch{
+  width: 90%;
+}
+
+/* ovirade bootsrap */
+
+body {
+  padding-top:70px;
+}
+
+.navbar-header {
+  float: none;
+}
+.navbar-toggle {
+  display: block;
+}
+.navbar-collapse.collapse {
+  display: none!important;
+}
+.navbar-nav {
+  float: none!important;
+}
+.navbar-nav>li {
+  float: none;
+}
+.navbar-collapse.collapse.in{
+  display:block !important;
 }

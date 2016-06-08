@@ -5,7 +5,18 @@ app.controller("mapController",function ($scope,$http) {
      console.log(data);
      });
      */
-
+    $scope.serverStr = "http://localhost:3000";
+    $scope.inputFrom = "";
+    $scope.inputTo = "";
+    $scope.sendFindPatchRequest = function(){
+        console.log("inputFrom:"+$scope.inputFrom);
+        console.log("inputTo:"+$scope.inputTo);
+        $http.get( $scope.serverStr+"/getPath/"+$scope.inputFrom+"/"+$scope.inputTo).success(function () {
+           console.log(data); 
+        });
+        $scope.inputFrom = "";
+        $scope.inputTo = "";
+    };
 
     //tempory json of data for example. It's must be output from server function. Todo!
     $scope.mapData =  {

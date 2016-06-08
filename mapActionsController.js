@@ -68,12 +68,13 @@ exports.getPath = function(req,res) { //todo validation
 };
 
 exports.setStatusRoom = function(req,res) { //todo set status in data base
-    var status = 200;
-    var route = getGraph();
-    res.status(status).send(route);
+    var room = req.params.room; //id of room
+    var roomStatus = req.params.roomStatus; // true or false
+    res.status(status).send({"MESSAGE":"done"});
 };
 
 
+// is function getRoomStatus needed?
 exports.getRoomStatus = function(req,res) { //todo make query by param :room
     placesSchema.find({},function (err,data) {
         if(err){
