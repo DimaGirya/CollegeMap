@@ -8,6 +8,7 @@ app.controller("mapController",function ($scope,$http) {
     $scope.serverStr = "http://localhost:3000";
     $scope.inputFrom = "";
     $scope.inputTo = "";
+    $scope.roomStatus = "0";
     $scope.sendFindPatchRequest = function(){
         console.log("inputFrom:"+$scope.inputFrom);
         console.log("inputTo:"+$scope.inputTo);
@@ -22,7 +23,7 @@ app.controller("mapController",function ($scope,$http) {
     $scope.mapData =  {
         "columns": [
             {
-                "boxes": [
+                "boxes": 1[
                     {
                         "boxesType": "room",
                         "border": "borderLeftTop",
