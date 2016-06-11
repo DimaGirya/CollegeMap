@@ -71,9 +71,9 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <label for="from">From:</label>
-                    <input type="text" class="form-control inputFindPatch">
-                    <label>
+                    <label for="from">Room to report:</label>
+                    <input type="text" ng-model="roomToReport" class="form-control inputFindPatch">
+                        <label>
                         <input type="radio" ng-model="roomStatus"  ng-value="1">
                         Free
                     </label>
@@ -93,8 +93,38 @@
                         Room is not available
                     </label>
                     <br>
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-primary" ng-click="sendReportRoomRequest()">Submit</button>
                 </form>
+        </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="mapLegend" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Map legend</h4>
+            </div>
+            <div class="modal-body">
+                <div class = "demo_div">
+                    Class:
+                    <div class="room demo_box"></div>
+                </div>
+                <div class = "demo_div">
+                    Hallway:
+                    <div class="hallway demo_box"></div>
+                </div>
+                <div class = "clear"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -103,6 +133,7 @@
 
     </div>
 </div>
+
 
 <nav class = "navbar navbar-default" role = "navigation">
 
@@ -127,8 +158,8 @@
             <div class="btn-group-vertical">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#findPatchDialog">Find patch</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reportRoomDialog">Report room</button>
-                <button type="button" class="btn btn-primary">Update Map</button>
-                <button type="button" class="btn btn-primary">Map Legend</button>
+                <button type="button" class="btn btn-primary" ng-click="refreshMapData()" >Update Map</button>
+                <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#mapLegend">Map Legend</button>
             </div>
         </ul>
     </div>

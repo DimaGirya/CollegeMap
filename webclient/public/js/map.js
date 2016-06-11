@@ -1,14 +1,20 @@
 var app = angular.module("map",[]);
 app.controller("mapController",function ($scope,$http) {
-    /*
-     $http.get("http://localhost:3000/getAllMap").success(function (data) {
-     console.log(data);
-     });
-     */
     $scope.serverStr = "http://localhost:3000";
     $scope.inputFrom = "";
     $scope.inputTo = "";
-    $scope.roomStatus = "0";
+    $scope.roomToReport = "";
+    $scope.roomStatus = 0;
+    $scope.refreshMapData = function () {
+        $http.get( $scope.serverStr+"/getMapToDisplay").success(function (data) {
+            console.log(data);
+        });
+    };
+    $scope.sendReportRoomRequest = function () {
+        $http.get( $scope.serverStr+"/setStatusRoom/"+$scope.roomToReport+"/"+$scope.roomStatus).success(function (data) {
+            console.log(data);
+        });
+    };
     $scope.sendFindPatchRequest = function(){
         console.log("inputFrom:"+$scope.inputFrom);
         console.log("inputTo:"+$scope.inputTo);
@@ -18,7 +24,8 @@ app.controller("mapController",function ($scope,$http) {
         $scope.inputFrom = "";
         $scope.inputTo = "";
     };
-
+    
+    $scope.refreshMapData();
     //tempory json of data for example. It's must be output from server function. Todo!
     $scope.mapData =  {
         "columns": [

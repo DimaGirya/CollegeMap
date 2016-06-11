@@ -68,9 +68,11 @@ exports.getPath = function(req,res) { //todo validation
 };
 
 exports.setStatusRoom = function(req,res) { //todo set status in data base
+    var status = 200;
     var room = req.params.room; //id of room
-    var roomStatus = req.params.roomStatus; // true or false
-    res.status(status).send({"MESSAGE":"done"});
+    var roomStatus = req.params.status; // status number
+    var response = [{"Response":"Room:"+room+" RoomStatus:"+roomStatus}];
+    res.status(status).send(response);
 };
 
 
