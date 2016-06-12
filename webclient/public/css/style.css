@@ -48,6 +48,30 @@ td,tr {
   border-color: #869ec5;
   border-style: solid;
 }
+.free{
+  border-width: 2px ;
+  background-color: #869ec5;
+  border-color: #869ec5;
+  border-style: solid;
+}
+.engaged{
+  border-width: 2px ;
+  background-color: #c57b12;
+  border-color: #c57b12;
+  border-style: solid;
+}
+.lecture{
+  border-width: 2px ;
+  background-color: #9ACD32;
+  border-color: #9ACD32;
+  border-style: solid;
+}
+.notAvailable{
+  border-width: 2px ;
+  background-color:#000000;
+  border-color: #000000;
+  border-style: solid;
+}
 .office{
   border-width: 2px ;
   background-color: green;
@@ -60,6 +84,7 @@ td,tr {
   border-color: #8294a5;
   border-style: solid;
 }
+
 .borderNone{
   border-style: solid;
 }

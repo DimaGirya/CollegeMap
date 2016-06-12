@@ -56,33 +56,33 @@
             <div class="modal-body">
                 <form>
                     <label for="from">Room to report:</label>
-                    <input type="text" ng-model="roomToReport.name" ng-change="bindIdToName()" class="form-control inputFindPatch">
+                    <input type="text" ng-model="classToReport.name" ng-change="bindIdToClassName()" class="form-control inputFindPatch">
                     <div class = "roomSearch">
-                       <div ng-repeat="room in rooms | filter:roomToReport.name" >
-                         <div>{{room.name}}</div>
+                       <div ng-repeat=" class in classes | filter:classToReport.name" >
+                         <div>{{class.name}}</div>
                       </div>
                      </div>
                     <label>
-                        <input type="radio" ng-model="roomToReport.status" value="free">
+                        <input type="radio" ng-model="classToReport.status" value="free">
                         Free
                     </label>
                     <br/>
                     <label>
-                        <input type="radio" ng-model="roomToReport.status" value="engaged">
+                        <input type="radio" ng-model="classToReport.status" value="engaged">
                         Engaged
                     </label>
                     <br/>
                     <label>
-                        <input type="radio" ng-model="roomToReport.status"  value="lecture">
+                        <input type="radio" ng-model="classToReport.status"  value="lecture">
                         Lecture
                     </label>
                     <br>
                     <label>
-                        <input type="radio" ng-model="roomToReport.status" value="notAvailable">
+                        <input type="radio" ng-model="classToReport.status" value="notAvailable">
                         Room is not available
                     </label>
                     <br>
-                    <button type="button" class="btn btn-primary" ng-click="sendReportRoomRequest()">Submit</button>
+                    <button type="button" class="btn btn-primary" ng-click="sendReportClassRequest()" data-dismiss="modal">Submit</button>
                 </form>
         </div>
             <div class="modal-footer">
@@ -160,8 +160,8 @@
     <tr ng-repeat="column in mapData" >
         <th ng-repeat="box in column">
             <div ng-class="['box']">
-                <div ng-class = "['box_inner',box.border, box.type]" >
-                    <!--{{box.box_id}} -->
+                <div ng-class = "['box_inner',box.border, box.status]" >
+                    <!--{{ box.status}} -->
                 </div>
             </div>
         </th>

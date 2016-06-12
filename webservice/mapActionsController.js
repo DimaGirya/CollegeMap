@@ -6,7 +6,7 @@ var DB = require('./database');
 exports.getMap = function(req,res) {
     var status = 200;
     if(!DB.isConnectedToDB()){
-        res.status(status).send({"MESSAGE":"No connection to data base.Try again leter"});
+        res.status(status).send({"message":"No connection to data base.Try again leter"});
     }
     placesSchema.find({},function (err,data) {
         if(err){
@@ -21,7 +21,7 @@ exports.getMap = function(req,res) {
 exports.getMapToDisplay = function(req,res) {
     var status = 200;
     if(!DB.isConnectedToDB()){
-        res.status(status).send({"MESSAGE":"No connection to data base.Try again leter"});
+        res.status(status).send({"message":"No connection to data base.Try again leter"});
     }
     placesSchema.find({},function (err,data) {
         if(err){
@@ -43,7 +43,7 @@ function calculateMap(places) {
         var width = place.width;
         for (var j=coord_y;j<coord_y+height;j++){
             for (var k=coord_x;k<coord_x+width;k++){
-                var cell = {type: place.type, border: "none", place_id: place.id, in_path: false};
+                var cell = {type: place.type, border: "none", status:place.status,place_id: place.id, in_path: false};
                 map[j][k] = cell;
             }
         }
@@ -88,23 +88,20 @@ exports.getPath = function(req,res) { //todo validation
 exports.setStatusRoom = function(req,res) { //todo set status in data base
     var status = 200;
     var roomId = req.params.room; //id of room
-    console.log(roomId);
-    var roomStatus = req.params.status; // status number
-    console.log(roomStatus);
+    var roomStatus = req.params.status; //status string
     var response;
     var query = placesSchema.findOne().where({id:roomId});
     query.exec(function (err,doc) {
-        if(err) throw err;
-        console.log("room:");
-      console.log(doc);
-        console.log("1:");
-        console.log(doc.type);
+        if(err) {
+            console.log(err);
+            throw err;
+        }
        if(doc.type != 'class'){
-            response =  [{"Message":"Room is not class. Can't change status of room"}];
+            response =  [{"message":"Room is not class. Can't change status of room"}];
             res.status(status).send(response);
         }
        else if(doc.status == roomStatus){
-            response =  [{"Message":"Same status"}];
+            response =  [{"message":"Same status"}];
             res.status(status).send(response);
         }
         else{
@@ -113,7 +110,7 @@ exports.setStatusRoom = function(req,res) { //todo set status in data base
            });
            query.exec(function (err,results) {
                if(err)throw err;
-               response =  [{"Message":"Save status done"}];
+               response =  [{"message":"Save status done"}];
                res.status(status).send(response);
            });
         }
