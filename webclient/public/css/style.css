@@ -3,16 +3,33 @@
   margin: 0;
   -webkit-box-sizing: content-box;
 }
-.box{
-  float:right;
-  height:152px;
-  width: 152px;
 
+.roomSearch{
+  height: 100px;
+  overflow-y: scroll;
+}
+table {
+  border-collapse: collapse;
 }
 
+td,tr {
+  border-width: 0;
+}
+
+.inputFindPatch{
+  width: 90%;
+}
+
+/* -----------Map style----------- */
+.box{
+  float:right;
+  height:102px;
+  width: 102px;
+
+}
 .box_inner{
-  height:150px;
-  width: 150px;
+  height:100px;
+  width: 100px;
 }
 .demo_box{
   width: 50px;
@@ -25,10 +42,16 @@
 .clear{
   clear: both;
 }
-.room{
+.class{
   border-width: 2px ;
   background-color: #869ec5;
   border-color: #869ec5;
+  border-style: solid;
+}
+.office{
+  border-width: 2px ;
+  background-color: green;
+  border-color: green;
   border-style: solid;
 }
 .hallway{
@@ -151,18 +174,6 @@
   border-color: #000000;
   border-style:solid;
 
-}
-
-table {
-  border-collapse: collapse;
-}
-
-td,tr {
-  border-width: 0;
-}
-
-.inputFindPatch{
-  width: 90%;
 }
 
 /* Override bootstrap */

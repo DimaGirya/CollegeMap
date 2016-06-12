@@ -3,7 +3,7 @@
 var flagIsConnection =  false;
 var mongoose = require('mongoose');
 config = {
-    mongoUrl:'mongodb://db_user:db_pass@ds023520.mlab.com:23520/places'
+    mongoUrl:'mongodb://ColleageMap:shenkarmap@ds013414.mlab.com:13414/collegemap'
 };
 
 //The server optionauto_reconnectis defaulted to true
@@ -33,3 +33,8 @@ db.on('reconnected', function (){
     flagIsConnection = true;
     console.info('Mongoose reconnected!');
 });
+
+
+exports.isConnectedToDB = function () {
+   return flagIsConnection
+};

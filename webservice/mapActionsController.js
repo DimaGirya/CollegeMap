@@ -1,11 +1,11 @@
 const Graph = require('node-dijkstra');
 var mongoose = require('mongoose');
 var placesSchema = require('./placesSchema');
-
+var DB = require('./database');
 // get all places
-exports.getMap = function(req,res) { //todo get all map
+exports.getMap = function(req,res) {
     var status = 200;
-    if(!flagIsConnection){
+    if(!DB.isConnectedToDB()){
         res.status(status).send({"MESSAGE":"No connection to data base.Try again leter"});
     }
     placesSchema.find({},function (err,data) {
@@ -18,13 +18,23 @@ exports.getMap = function(req,res) { //todo get all map
 
 
 
-exports.getMapToDisplay = function(req,res) { //todo get all map
+exports.getMapToDisplay = function(req,res) {
+    var status = 200;
+    if(!DB.isConnectedToDB()){
+        res.status(status).send({"MESSAGE":"No connection to data base.Try again leter"});
+    }
+    placesSchema.find({},function (err,data) {
+        if(err){
+            throw err;
+        }
+        var result = calculateMap(data);
+        res.status(status).send(result)
+    });
+  
+};
 
-    var class1 = {id: 1, type: "classroom", name: "classroom1", coord_x: 0, coord_y: 0, width: 5, height: 10};
-    var class2 = {id: 2, type: "classroom", name: "classroom2", coord_x: 5, coord_y: 0, width: 5, height: 7};
-    var hallway1 = {id: 3, type: "hallway", name: "hallway1", coord_x: 5, coord_y: 7, width: 5, height: 3};
+function calculateMap(places) {
     var map = [ [],[],[],[],[], [], [], [], [], [] ];
-    var places = [class1, class2, hallway1];
     for(var i=0;i<places.length;i++){
         var place = places[i];
         var coord_y = place.coord_y;
@@ -33,15 +43,23 @@ exports.getMapToDisplay = function(req,res) { //todo get all map
         var width = place.width;
         for (var j=coord_y;j<coord_y+height;j++){
             for (var k=coord_x;k<coord_x+width;k++){
-                map[j][k] = place.id;
+                var cell = {type: place.type, border: "none", place_id: place.id, in_path: false};
+                map[j][k] = cell;
             }
         }
-        console.log(map);
-        console.log("\n\n");
     }
-};
-
-
+    /*
+    var cell_counter=0;
+    for (var p=0;p<map.length;p++){
+        var row=map[p];
+        for(var q=0;q<row.length;q++){
+            map[p][q].box_id = cell_counter;
+            cell_counter++;
+        }
+    }
+    */
+    return JSON.stringify(map);
+}
 
 
 
@@ -69,10 +87,40 @@ exports.getPath = function(req,res) { //todo validation
 
 exports.setStatusRoom = function(req,res) { //todo set status in data base
     var status = 200;
-    var room = req.params.room; //id of room
+    var roomId = req.params.room; //id of room
+    console.log(roomId);
     var roomStatus = req.params.status; // status number
-    var response = [{"Response":"Room:"+room+" RoomStatus:"+roomStatus}];
-    res.status(status).send(response);
+    console.log(roomStatus);
+    var response;
+    var query = placesSchema.findOne().where({id:roomId});
+    query.exec(function (err,doc) {
+        if(err) throw err;
+        console.log("room:");
+      console.log(doc);
+        console.log("1:");
+        console.log(doc.type);
+       if(doc.type != 'class'){
+            response =  [{"Message":"Room is not class. Can't change status of room"}];
+            res.status(status).send(response);
+        }
+       else if(doc.status == roomStatus){
+            response =  [{"Message":"Same status"}];
+            res.status(status).send(response);
+        }
+        else{
+           var query = doc.update({
+               $set:{'status':roomStatus}
+           });
+           query.exec(function (err,results) {
+               if(err)throw err;
+               response =  [{"Message":"Save status done"}];
+               res.status(status).send(response);
+           });
+        }
+    });
+
+//  var response = [{"Response":"Room:"+room+" RoomStatus:"+roomStatus}];
+
 };
 
 

@@ -12,22 +12,6 @@
 </head>
 <body ng-controller="mapController">
 
-<!--
-<body>
-<div ng-controller="mapController" >
-<div ng-repeat="column in mapData.columns" >
-    <div ng-repeat="box in column.boxes | orderBy:'box.box_id':true">
-            <div ng-class="['box']">
-                  <div ng-class = "['box_inner',box.border, box.boxesType]" >
-                      {{box.box_id}}
-                 </div>
-            </div>
-        </div>
-        <div class = "clear">
-        </div>
-</div>
-</div>
--->
 
 <div class="modal fade" id="findPatchDialog" role="dialog">
     <div class="modal-dialog">
@@ -72,24 +56,29 @@
             <div class="modal-body">
                 <form>
                     <label for="from">Room to report:</label>
-                    <input type="text" ng-model="roomToReport" class="form-control inputFindPatch">
-                        <label>
-                        <input type="radio" ng-model="roomStatus"  ng-value="1">
+                    <input type="text" ng-model="roomToReport.name" ng-change="bindIdToName()" class="form-control inputFindPatch">
+                    <div class = "roomSearch">
+                       <div ng-repeat="room in rooms | filter:roomToReport.name" >
+                         <div>{{room.name}}</div>
+                      </div>
+                     </div>
+                    <label>
+                        <input type="radio" ng-model="roomToReport.status" value="free">
                         Free
                     </label>
                     <br/>
                     <label>
-                        <input type="radio" ng-model="roomStatus" ng-value="2">
+                        <input type="radio" ng-model="roomToReport.status" value="engaged">
                         Engaged
                     </label>
                     <br/>
                     <label>
-                        <input type="radio" ng-model="roomStatus"  ng-value="3">
+                        <input type="radio" ng-model="roomToReport.status"  value="lecture">
                         Lecture
                     </label>
                     <br>
                     <label>
-                        <input type="radio" ng-model="roomStatus"  ng-value="4">
+                        <input type="radio" ng-model="roomToReport.status" value="notAvailable">
                         Room is not available
                     </label>
                     <br>
@@ -168,11 +157,11 @@
 
 <div  >
     <table>
-    <tr ng-repeat="column in mapData.columns" >
-        <th ng-repeat="box in column.boxes">
+    <tr ng-repeat="column in mapData" >
+        <th ng-repeat="box in column">
             <div ng-class="['box']">
-                <div ng-class = "['box_inner',box.border, box.boxesType]" >
-                    {{box.box_id}}
+                <div ng-class = "['box_inner',box.border, box.type]" >
+                    <!--{{box.box_id}} -->
                 </div>
             </div>
         </th>
